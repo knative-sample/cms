@@ -1,0 +1,19 @@
+# Except this file !.gitignore 
+.classpath
+.project
+.settings
+target
+baseinfo/target
+contactinfo/target
+portal-wap/target
+portal-www/target
+.project
+.idea
+.DS_Store
+/logs
+*.iml
+node_modules
+test/derby.log
+/console-fe
+mse-test/target
+mse.home_IS_UNDEFINED/logs
