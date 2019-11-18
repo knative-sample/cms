@@ -1,0 +1,67 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  labels:
+    alicloud.knative.ingress: knative
+    createdBy: console
+  name: {{ .Values.portalwww.name }}-knative-console
+  namespace: {{ .Values.namespace }}
+spec:
+  gateways:
+  - knative-serving/knative-ingress-gateway
+  hosts:
+  - {{ .Values.ingress.host }}
+  http:
+  - match:
+    - headers: {}
+      uri:
+        prefix: /
+    retries:
+      attempts: 3
+      perTryTimeout: 10m0s
+    rewrite:
+      authority: {{ .Values.portalwww.name }}.{{ .Values.namespace }}.svc.cluster.local
+    route:
+    - destination:
+        host: istio-ingressgateway.istio-system.svc.cluster.local
+        port:
+          number: 80
+      weight: 100
+    timeout: 10m0s
+    websocketUpgrade: true
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  labels:
+    alicloud.knative.ingress: knative
+    createdBy: console
+  name: {{ .Values.portalmobile.name }}-knative-console
+  namespace: {{ .Values.namespace }}
+spec:
+  gateways:
+  - knative-serving/knative-ingress-gateway
+  hosts:
+  - {{ .Values.ingress.host }}
+  http:
+  - match:
+    - uri:
+        prefix: /
+{{- if .Values.ingress.mobile.headers }}
+      headers:
+{{ toYaml .Values.ingress.mobile.headers | indent 8 }}
+{{- end }}
+    retries:
+      attempts: 3
+      perTryTimeout: 10m0s
+    rewrite:
+      authority: {{ .Values.portalmobile.name }}.{{ .Values.namespace }}.svc.cluster.local
+    route:
+    - destination:
+        host: istio-ingressgateway.istio-system.svc.cluster.local
+        port:
+          number: 80
+      weight: 100
+    timeout: 10m0s
+    websocketUpgrade: true

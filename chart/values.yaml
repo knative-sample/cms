@@ -1,0 +1,38 @@
+# Common settings.
+namespace: default
+domain: example.com
+MSE_EUREKA_URL: mse-xxxx-eureka.mse.aliyuncs.com
+
+ingress:
+  host: test.example.com
+  mobile:
+    headers:
+      User-Agent:
+        regex: .*Mobile.*
+
+
+portalwww:
+  scaleToZero: false
+  name: portal-www
+  image:
+    repository: registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-portal-www
+    tag: "master_71550dd3-20191117222711"
+
+portalmobile:
+  scaleToZero: false
+  name: portal-mobile
+  image:
+    repository: registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-portal-wap
+    tag: "master_71550dd3-20191117224805"
+
+baseinfo:
+  scaleToZero: false
+  image:
+    repository: registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-baseinfo
+    tag: "master_71550dd3-20191117221027"
+
+contactinfo:
+  scaleToZero: false
+  image:
+    repository: registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-contactinfo
+    tag: "master_71550dd3-20191117222557"
