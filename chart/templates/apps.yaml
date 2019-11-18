@@ -1,17 +1,17 @@
 apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
-  name: {{ .Values.portalwww.name }}
+  name: {{ .Values.portalpc.name }}
 spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/maxScale: "{{ .Values.portalwww.maxScale }}"
-        autoscaling.knative.dev/minScale: "{{ .Values.portalwww.minScale }}"
+        autoscaling.knative.dev/maxScale: "{{ .Values.portalpc.maxScale }}"
+        autoscaling.knative.dev/minScale: "{{ .Values.portalpc.minScale }}"
     spec:
-      containerConcurrency: {{ .Values.portalwww.containerConcurrency }}
+      containerConcurrency: {{ .Values.portalpc.containerConcurrency }}
       containers:
-      - image: "{{ .Values.portalwww.image.repository }}:{{ .Values.portalwww.image.tag }}"
+      - image: "{{ .Values.portalpc.image.repository }}:{{ .Values.portalpc.image.tag }}"
         env:
         - name: MSE_EUREKA_URL
           value: {{ .Values.MSE_EUREKA_URL }}

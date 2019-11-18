@@ -1,20 +1,19 @@
 # Common settings.
-domain: example.com
-MSE_EUREKA_URL: mse-xxxx-eureka.mse.aliyuncs.com
+domain: knative.example.com
+MSE_EUREKA_URL: mse-xxx-eureka.mse.aliyuncs.com
 
 ingress:
-  host: test.example.com
+  host: hl-dev.knative.example.com
   mobile:
     headers:
       User-Agent:
         regex: .*Mobile.*
 
-
-portalwww:
-  name: portal-www
+portalpc:
+  name: portal-pc
   image:
-    repository: registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-portal-www
-    tag: "master_71550dd3-20191117222711"
+    repository: "registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-portal-pc"
+    tag: "master_71550dd3-20191118170322"
   maxScale: "100"
   minScale: "1"
   containerConcurrency: 10
@@ -22,16 +21,16 @@ portalwww:
 portalmobile:
   name: portal-mobile
   image:
-    repository: registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-portal-wap
-    tag: "master_71550dd3-20191117224805"
+    repository: "registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-portal-mobile"
+    tag: "master_71550dd3-20191118170150"
   maxScale: "100"
   minScale: "1"
   containerConcurrency: 10
 
 baseinfo:
   image:
-    repository: registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-baseinfo
-    tag: "master_71550dd3-20191117221027"
+    repository: "registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-baseinfo"
+    tag: "master_71550dd3-20191118170440"
   maxScale: "100"
   minScale: "1"
   containerConcurrency: 10
@@ -39,9 +38,10 @@ baseinfo:
 
 contactinfo:
   image:
-    repository: registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-contactinfo
-    tag: "master_71550dd3-20191117222557"
+    repository: "registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-contactinfo"
+    tag: "master_71550dd3-20191118170545"
   maxScale: "100"
   minScale: "1"
   containerConcurrency: 10
   port: "80"
+

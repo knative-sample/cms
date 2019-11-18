@@ -4,7 +4,7 @@ metadata:
   labels:
     alicloud.knative.ingress: knative
     createdBy: console
-  name: {{ .Values.portalwww.name }}-knative-console
+  name: {{ .Values.portalpc.name }}-knative-console
 spec:
   gateways:
   - knative-serving/knative-ingress-gateway
@@ -19,7 +19,7 @@ spec:
       attempts: 3
       perTryTimeout: 10m0s
     rewrite:
-      authority: {{ .Values.portalwww.name }}.{{ .Release.Namespace }}.svc.cluster.local
+      authority: {{ .Values.portalpc.name }}.{{ .Release.Namespace }}.svc.cluster.local
     route:
     - destination:
         host: istio-ingressgateway.istio-system.svc.cluster.local
