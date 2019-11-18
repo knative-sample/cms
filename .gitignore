@@ -5,8 +5,8 @@
 target
 baseinfo/target
 contactinfo/target
-portal-wap/target
-portal-www/target
+portal-mobile/target
+portal-pc/target
 .project
 .idea
 .DS_Store

@@ -7,5 +7,5 @@ jar:
 
 image:
 	@echo "build docker image"
-	./build-image.sh cms-portal-wap
+	./build-image.sh cms-portal-mobile
 
