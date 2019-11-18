@@ -1,5 +1,4 @@
 # Common settings.
-namespace: default
 domain: example.com
 MSE_EUREKA_URL: mse-xxxx-eureka.mse.aliyuncs.com
 

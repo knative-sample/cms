@@ -8,7 +8,7 @@ Deploy the MicroService by Knative and MSE
 ## Installing the Chart
 To Install the cms chart:
     ```
-    $ helm install chart --name cms
+    $ helm install chart --name cms --namespace default
     ```
 ## Uninstalling the Chart
 

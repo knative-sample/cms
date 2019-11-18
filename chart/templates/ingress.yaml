@@ -5,7 +5,6 @@ metadata:
     alicloud.knative.ingress: knative
     createdBy: console
   name: {{ .Values.portalwww.name }}-knative-console
-  namespace: {{ .Values.namespace }}
 spec:
   gateways:
   - knative-serving/knative-ingress-gateway
@@ -20,7 +19,7 @@ spec:
       attempts: 3
       perTryTimeout: 10m0s
     rewrite:
-      authority: {{ .Values.portalwww.name }}.{{ .Values.namespace }}.svc.cluster.local
+      authority: {{ .Values.portalwww.name }}.{{ .Release.Namespace }}.svc.cluster.local
     route:
     - destination:
         host: istio-ingressgateway.istio-system.svc.cluster.local
@@ -38,7 +37,6 @@ metadata:
     alicloud.knative.ingress: knative
     createdBy: console
   name: {{ .Values.portalmobile.name }}-knative-console
-  namespace: {{ .Values.namespace }}
 spec:
   gateways:
   - knative-serving/knative-ingress-gateway
@@ -56,7 +54,7 @@ spec:
       attempts: 3
       perTryTimeout: 10m0s
     rewrite:
-      authority: {{ .Values.portalmobile.name }}.{{ .Values.namespace }}.svc.cluster.local
+      authority: {{ .Values.portalmobile.name }}.{{ .Release.Namespace }}.svc.cluster.local
     route:
     - destination:
         host: istio-ingressgateway.istio-system.svc.cluster.local

@@ -2,7 +2,6 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: {{ .Values.portalwww.name }}
-  namespace: {{ .Values.namespace }}
 spec:
   template:
     metadata:
@@ -23,7 +22,6 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: {{ .Values.portalmobile.name }}
-  namespace: {{ .Values.namespace }}
 spec:
   template:
     metadata:
@@ -43,7 +41,6 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: baseinfo
-  namespace: {{ .Values.namespace }}
 spec:
   template:
     metadata:
@@ -55,7 +52,7 @@ spec:
       containers:
       - env:
         - name: ENDPOINT_HOST
-          value: baseinfo.{{ .Values.namespace }}.{{ .Values.domain }}
+          value: baseinfo.{{ .Release.Namespace }}.{{ .Values.domain }}
         - name: ENDPOINT_PORT
           value: "{{ .Values.baseinfo.port }}"
         - name: MSE_EUREKA_URL
@@ -67,7 +64,6 @@ apiVersion: serving.knative.dev/v1
 kind: Service
 metadata:
   name: contactinfo
-  namespace: {{ .Values.namespace }}
 spec:
   template:
     metadata:
@@ -80,7 +76,7 @@ spec:
       containers:
       - env:
         - name: ENDPOINT_HOST
-          value: contactinfo.{{ .Values.namespace }}.{{ .Values.domain }}
+          value: contactinfo.{{ .Release.Namespace }}.{{ .Values.domain }}
         - name: ENDPOINT_PORT
           value: "{{ .Values.contactinfo.port }}"
         - name: MSE_EUREKA_URL
