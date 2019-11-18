@@ -7,12 +7,10 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/maxScale: "100"
-        {{- if not .Values.contactinfo.scaleToZero }}
-        autoscaling.knative.dev/minScale: "1"
-        {{- end }}
+        autoscaling.knative.dev/maxScale: "{{ .Values.portalwww.maxScale }}"
+        autoscaling.knative.dev/minScale: "{{ .Values.portalwww.minScale }}"
     spec:
-      containerConcurrency: 10
+      containerConcurrency: {{ .Values.portalwww.containerConcurrency }}
       containers:
       - image: "{{ .Values.portalwww.image.repository }}:{{ .Values.portalwww.image.tag }}"
         env:
@@ -30,12 +28,10 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/maxScale: "100"
-        {{- if not .Values.contactinfo.scaleToZero }}
-        autoscaling.knative.dev/minScale: "1"
-        {{- end }}
+        autoscaling.knative.dev/maxScale: "{{ .Values.portalmobile.maxScale }}"
+        autoscaling.knative.dev/minScale: "{{ .Values.portalmobile.minScale }}"
     spec:
-      containerConcurrency: 10
+      containerConcurrency: {{ .Values.portalmobile.containerConcurrency }}
       containers:
       - env:
         - name: MSE_EUREKA_URL
@@ -52,18 +48,16 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/maxScale: "100"
-        {{- if not .Values.contactinfo.scaleToZero }}
-        autoscaling.knative.dev/minScale: "1"
-        {{- end }}
+        autoscaling.knative.dev/maxScale: "{{ .Values.baseinfo.maxScale }}"
+        autoscaling.knative.dev/minScale: "{{ .Values.baseinfo.minScale }}"
     spec:
-      containerConcurrency: 10
+      containerConcurrency: {{ .Values.baseinfo.containerConcurrency }}
       containers:
       - env:
         - name: ENDPOINT_HOST
           value: baseinfo.{{ .Values.namespace }}.{{ .Values.domain }}
         - name: ENDPOINT_PORT
-          value: "80"
+          value: "{{ .Values.baseinfo.port }}"
         - name: MSE_EUREKA_URL
           value: {{ .Values.MSE_EUREKA_URL }}
         image: "{{ .Values.baseinfo.image.repository }}:{{ .Values.baseinfo.image.tag }}"
@@ -78,19 +72,17 @@ spec:
   template:
     metadata:
       annotations:
-        autoscaling.knative.dev/maxScale: "100"
-        {{- if not .Values.contactinfo.scaleToZero }}
-        autoscaling.knative.dev/minScale: "1"
-        {{- end }}
+        autoscaling.knative.dev/maxScale: "{{ .Values.contactinfo.maxScale }}"
+        autoscaling.knative.dev/minScale: "{{ .Values.contactinfo.minScale }}"
 
     spec:
-      containerConcurrency: 10
+      containerConcurrency: {{ .Values.contactinfo.containerConcurrency }}
       containers:
       - env:
         - name: ENDPOINT_HOST
           value: contactinfo.{{ .Values.namespace }}.{{ .Values.domain }}
         - name: ENDPOINT_PORT
-          value: "80"
+          value: "{{ .Values.contactinfo.port }}"
         - name: MSE_EUREKA_URL
           value: {{ .Values.MSE_EUREKA_URL }}
         image: "{{ .Values.contactinfo.image.repository }}:{{ .Values.contactinfo.image.tag }}"
