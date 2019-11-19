@@ -7,5 +7,7 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://${MSE_EUREKA_URL}:8761/eureka
+    fetch-registry: true
+    registry-fetch-interval-seconds: 5
 instance:
   preferIpAddress: true
