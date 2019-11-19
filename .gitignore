@@ -17,3 +17,4 @@ test/derby.log
 /console-fe
 mse-test/target
 mse.home_IS_UNDEFINED/logs
+chart-cms

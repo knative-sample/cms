@@ -13,7 +13,7 @@ portalpc:
   name: portal-pc
   image:
     repository: "registry.cn-hangzhou.aliyuncs.com/knative-sample/cms-portal-pc"
-    tag: "master_71550dd3-20191118170322"
+    tag: "master_2db9337b-20191119115043"
   maxScale: "100"
   minScale: "1"
   containerConcurrency: 10
